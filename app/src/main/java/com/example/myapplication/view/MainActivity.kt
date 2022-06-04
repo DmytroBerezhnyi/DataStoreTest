@@ -1,5 +1,6 @@
 package com.example.myapplication.view
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.R
@@ -24,12 +25,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setupViewObservers() {
-        vm.user.observe(this, {
-            it?.let {
-                val userText = it.name + " " + it.surname
-                tv_name.text = userText
+        vm.user.observe(this) {
+            it?.let { user ->
+                tv_name.text = user.name + " " +user.surname
             }
-        })
+        }
     }
 }
